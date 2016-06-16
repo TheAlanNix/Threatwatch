@@ -5,9 +5,13 @@
 @section('content')
 
 	<div class="page-header">
-		@if (!empty($_ENV['SMC_IP']))
-			<span style="float: right"><a class="btn btn-primary" href="/host-group-tree/?ip_address={{ $ip_address }}">Add to Host Group</a></span>
-		@endif
+		<span style="float: right">
+			@if (!empty(getSetting('SMC_IP')))
+				<a class="btn btn-primary" href="/host-group-tree/?ip_address={{ $ip_address }}">Add to Host Group</a>
+			@else
+				A Stealthwatch SMC has not been configured.<br><a href="/config">Click here to add one.</a>
+			@endif
+		</span>
 		<h1>IP Details for <small>{{ $ip_address }}</small></h1>
 	</div>
 
