@@ -266,66 +266,68 @@ td {
 				<?php $i = 0 ?>
 
 				@foreach ($threatgrid_data->samples as $sample)
-					<div class="col-xs-12 col-md-6">
-						<div class="col-xs-12 box-shadow buffer">
-							<div class="col-xs-12 center">
-								<h4>Threat Score</h4>
-								<div class="circle-chart" data-percent="{{ $sample->threatScore }}"></div>
-							</div>
-							<div class="col-xs-12">
-								<table class="table table-striped">
-									<tr>
-										<td>Threat Type</td>
-										<td>{{ $sample->magicType }}</td>
-									</tr>
-									@if (count($sample->avresults) > 0)
+					@if (!empty($sample->magicType))
+						<div class="col-xs-12 col-md-6">
+							<div class="col-xs-12 box-shadow buffer">
+								<div class="col-xs-12 center">
+									<h4>Threat Score</h4>
+									<div class="circle-chart" data-percent="{{ $sample->threatScore }}"></div>
+								</div>
+								<div class="col-xs-12">
+									<table class="table table-striped">
 										<tr>
-											<td>AV Results</td>
-											<td>
-												<ul>
-													@foreach ($sample->avresults as $avresult)
-														<li>{{ $avresult->signature }} ({{ $avresult->product }})</li>
-													@endforeach
-												</ul>
-											</td>
+											<td>Threat Type</td>
+											<td>{{ $sample->magicType }}</td>
 										</tr>
-									@endif
-									<tr>
-										<td>Size</td>
-										<td>{{ $sample->size }} Bytes</td>
-									</tr>
-									<tr>
-										<td>SHA256 Hash</td>
-										<td>{{ $sample->sha256 }}</td>
-									</tr>
-									<tr>
-										<td>SHA1 Hash</td>
-										<td>{{ $sample->sha1 }}</td>
-									</tr>
-									<tr>
-										<td>MD5 Hash</td>
-										<td>{{ $sample->md5 }}</td>
-									</tr>
-									<tr>
-										<td>First Seen</td>
-										<td>{{ date('M jS, Y', ($sample->firstSeen / 1000)) }}</td>
-									</tr>
-									<tr>
-										<td>Last Seen</td>
-										<td>{{ date('M jS, Y', ($sample->lastSeen / 1000)) }}</td>
-									</tr>
-								</table>
+										@if (count($sample->avresults) > 0)
+											<tr>
+												<td>AV Results</td>
+												<td>
+													<ul>
+														@foreach ($sample->avresults as $avresult)
+															<li>{{ $avresult->signature }} ({{ $avresult->product }})</li>
+														@endforeach
+													</ul>
+												</td>
+											</tr>
+										@endif
+										<tr>
+											<td>Size</td>
+											<td>{{ $sample->size }} Bytes</td>
+										</tr>
+										<tr>
+											<td>SHA256 Hash</td>
+											<td>{{ $sample->sha256 }}</td>
+										</tr>
+										<tr>
+											<td>SHA1 Hash</td>
+											<td>{{ $sample->sha1 }}</td>
+										</tr>
+										<tr>
+											<td>MD5 Hash</td>
+											<td>{{ $sample->md5 }}</td>
+										</tr>
+										<tr>
+											<td>First Seen</td>
+											<td>{{ date('M jS, Y', ($sample->firstSeen / 1000)) }}</td>
+										</tr>
+										<tr>
+											<td>Last Seen</td>
+											<td>{{ date('M jS, Y', ($sample->lastSeen / 1000)) }}</td>
+										</tr>
+									</table>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<?php
-						$i++;
+						<?php
+							$i++;
 
-						if ($i % 2 == 0) {
-							echo "<div class=\"clearfix\"></div>";
-						}
-					?>
+							if ($i % 2 == 0) {
+								echo "<div class=\"clearfix\"></div>";
+							}
+						?>
+					@endif
 				@endforeach
 			</div>
 
