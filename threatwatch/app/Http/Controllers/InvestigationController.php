@@ -620,6 +620,7 @@ class InvestigationController extends Controller
 				CURLOPT_RETURNTRANSFER => 1,
 				CURLOPT_SSL_VERIFYHOST => 0,
 				CURLOPT_SSL_VERIFYPEER => 0,
+                CURLOPT_TIMEOUT => 10,
 				CURLOPT_URL => $url,
 			));
 			$response = curl_exec($curl);
@@ -661,6 +662,7 @@ class InvestigationController extends Controller
 				CURLOPT_RETURNTRANSFER => 1,
 				CURLOPT_SSL_VERIFYHOST => 0,
 				CURLOPT_SSL_VERIFYPEER => 0,
+                CURLOPT_TIMEOUT => 10,
 				CURLOPT_URL => $url,
                 CURLOPT_USERPWD => $credentials
 			));

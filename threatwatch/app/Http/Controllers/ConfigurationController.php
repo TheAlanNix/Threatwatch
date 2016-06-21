@@ -57,7 +57,6 @@ class ConfigurationController extends Controller
 	{
 		// Delete the specified Blacklist
 		$blacklist	= Blacklist::find($request->input('id'));
-		$blacklist->ips()->detach();
 		$blacklist->delete();
 
 		// Redirect to the Config page
@@ -129,12 +128,29 @@ class ConfigurationController extends Controller
             setSetting('SMC_PASS',      $input['Password']);
             setSetting('SMC_DOMAIN',    $input['Domain']);
 
-            // Redirect to the Config pa$input['
+            // Redirect to the Config page
     		return redirect('/config');
         } else {
             // Redirect to the Config page with error
     		return redirect('/config')->with('SMC_ERROR', 'Unable to connect to the SMC using the supplied information.');
         }
+    }
+
+    /**
+     * Function to delete the StealthWatch SMC data
+     *
+     * @return HTTP Redirect
+     */
+    public function getDeleteStealthwatch(Request $request)
+    {
+        // Set the StealthWatch SMC settings in the database
+        setSetting('SMC_IP',    '');
+        setSetting('SMC_USER',  '');
+        setSetting('SMC_PASS',  '');
+        setSetting('SMC_DOMAIN','');
+
+        // Redirect to the Config page
+        return redirect('/config');
     }
 
     /**

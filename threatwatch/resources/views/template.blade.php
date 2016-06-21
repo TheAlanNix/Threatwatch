@@ -39,6 +39,10 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 
 		@yield('script')
 
+		<script>
+
+		</script>
+
 		<style>
 			body {
 				font-family: Lato;

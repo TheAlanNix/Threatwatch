@@ -56,6 +56,7 @@
 		</div>
 		<div class="center">
 			<input class="btn btn-sm btn-primary" type="submit" value="Save">
+			<a class="btn btn-sm btn-danger" href="/config/delete-stealthwatch">Clear</a>
 		</div>
 	</form>
 </div>
